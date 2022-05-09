@@ -1,7 +1,7 @@
 # A streamlit data app that receives a pdf input and outputs the tokenized and lemmatized text
 import string
 import streamlit as st
-import nltk as nltk
+import nltk 
 import pdfplumber
 import matplotlib.pyplot as plt
 
