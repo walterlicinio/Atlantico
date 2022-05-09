@@ -26,15 +26,19 @@ if pdf:
         for page in pdf_file.pages:
             text += page.extract_text()
     text = text.replace('\n', ' ')
-    # remove all punctuation
-    text = text.translate(str.maketrans('', '', string.punctuation))
+    # remove all punctuation using re sub
+    text = re.sub(r'[^\w\s]', '', text)
+    # text = text.translate(str.maketrans('', '', string.punctuation))
+    # remove all digits using re sub
+    text = re.sub(r'\d+', '', text)
+    # text = text.translate(str.maketrans('', '', string.digits))
     st.header("Original Text")
     st.write('First 1000 chars:')
     st.write(text[:1000])   
     
     # decapitalize all words
     text = text.lower() 
-    
+        
     text_tokenized = nltk.word_tokenize(text)
     st.header('Tokenized text')  
     st.write(text_tokenized)
