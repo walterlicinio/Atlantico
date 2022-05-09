@@ -4,6 +4,7 @@ import streamlit as st
 import nltk 
 import pdfplumber
 import matplotlib.pyplot as plt
+import regex as re
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
