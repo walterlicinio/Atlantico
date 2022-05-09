@@ -30,7 +30,10 @@ if pdf:
     text = text.translate(str.maketrans('', '', string.punctuation))
     st.header("Original Text")
     st.write('First 1000 chars:')
-    st.write(text[:1000])    
+    st.write(text[:1000])   
+    
+    # decapitalize all words
+    text = text.lower() 
     
     text_tokenized = nltk.word_tokenize(text)
     st.header('Tokenized text')  
