@@ -38,12 +38,14 @@ if pdf:
    
     lemmatizer = nltk.stem.WordNetLemmatizer()
     text_lemmatized = [lemmatizer.lemmatize(w) for w in text_tokenized]
-    st.header('Lemmatized text')  
-    st.write(text_lemmatized)
+ 
     
     # remove all stopwords portuguese
     stopwords = nltk.corpus.stopwords.words('portuguese')
+    st.write(stopwords)
     text_lemmatized = [w for w in text_lemmatized if w not in stopwords]
+    st.header('Lemmatized text')  
+    st.write(text_lemmatized)
     
     st.header('Plotting the frequency of the lemmatized text')
     freq = nltk.FreqDist(text_lemmatized)
