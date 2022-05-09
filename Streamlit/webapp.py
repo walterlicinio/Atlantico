@@ -45,7 +45,7 @@ if pdf:
     
     # remove all stopwords portuguese
     stopwords = nltk.corpus.stopwords.words('portuguese')
-    st.write(stopwords)
+    # st.write(stopwords)
     text_lemmatized = [w for w in text_lemmatized if w not in stopwords]
     st.header('Lemmatized text')  
     st.write(text_lemmatized)
