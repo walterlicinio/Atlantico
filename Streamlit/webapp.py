@@ -64,7 +64,7 @@ if pdf:
      
     # Generate a table with the column being the word and the row being the document frequency
     st.write("### Tabela de frequência de termos")
-    st.dataframe(freq.most_common(), width=800, columns=['term', 'freq'])
+    st.dataframe(freq.most_common(), width=800, cols=['term', 'freq'])
     st.pyplot()
     
     
