@@ -19,7 +19,6 @@ nltk.download('omw-1.4')
 # Streamlit Global
 st.set_option('deprecation.showPyplotGlobalUse', False)
 st.title("Análise de Texto - NLP")
-# st.header("Desenvolvido por Walter Licínio")
 st.write("Envie um ou mais arquivos PDF para serem tokenizados, lemmatizados e analisados.")
 pdf_list = st.file_uploader("Upload de arquivo pdf.", type=["pdf"], accept_multiple_files=True)
 st.write("Para resetar a aplicação, remova os arquivos.")
@@ -58,6 +57,10 @@ def tokenizer(pdf_list):
             st.header('TF - Frequência de Termos - '+ pdf.name )
             # st.write('### Gráfico de frequência de termos - '+ pdf.name)
             freq = nltk.FreqDist(text_lemmatized)
+            
+            # para cada termo, calcula frequencia sobre o total de termos no texto
+            for word in freq.keys():
+                freq[word] = freq[word] / len(text_lemmatized)
             # freq.plot(30)
             # plt.show()
             # st.pyplot()
@@ -70,6 +73,8 @@ def doc_frequency(pdf_list):
         st.write("# DF - Document Frequency")
         st.write("Ocorrência de cada termo no conjunto de documentos.")
         freq = nltk.FreqDist(all_lemmatized_docs)
+        for word in freq.keys():
+            freq[word] = freq[word] / len(all_lemmatized_docs)
         st.dataframe(freq.most_common())
         st.markdown("""---""")
         
@@ -78,6 +83,8 @@ def inverse_document_frequency(pdf_list):
         st.write("# IDF - Inverse Document Frequency")
         st.write("Onde o valor de IDF é o logaritmo da divisão entre o número de documentos e o número de documentos em que o termo aparece.")
         freq = nltk.FreqDist(all_lemmatized_docs)
+        for word in freq.keys():
+            freq[word] = freq[word] / len(all_lemmatized_docs)
         idf = {}
         for word in freq.keys():
             idf[word] = math.log(len(pdf_list) / (freq[word]+1))
@@ -89,6 +96,5 @@ tokenizer(pdf_list)
 doc_frequency(pdf_list)
 inverse_document_frequency(pdf_list)
 
-    
     
  
