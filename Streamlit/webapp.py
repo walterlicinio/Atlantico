@@ -72,6 +72,7 @@ def doc_frequency(pdf_list):
         freq = nltk.FreqDist(all_lemmatized_docs)
         st.dataframe(freq.most_common())
         st.markdown("""---""")
+        
 def inverse_document_frequency(pdf_list):
     if pdf_list:
         st.write("# IDF - Inverse Document Frequency")
@@ -79,7 +80,7 @@ def inverse_document_frequency(pdf_list):
         freq = nltk.FreqDist(all_lemmatized_docs)
         idf = {}
         for word in freq.keys():
-            idf[word] = math.log(len(pdf_list) / freq[word])
+            idf[word] = math.log(len(pdf_list) / (freq[word]+1))
         idf_df = pd.DataFrame.from_dict(idf, orient='index')
         st.dataframe(idf_df)
         st.markdown("""---""")
